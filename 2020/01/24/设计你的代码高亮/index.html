@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Stubborn Vegeta"/>
+        <meta property="og:title" content="设计你的代码高亮"/>
     
 
     <!--Open Graph Description-->
@@ -33,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -47,7 +47,7 @@
 
     <!-- Title -->
     
-    <title>Stubborn Vegeta</title>
+    <title>设计你的代码高亮 - Stubborn Vegeta</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -144,17 +144,14 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">Stubborn Vegeta</h1>
-        
     </div>
 </header>
 
         <section class="main">
             
-                
 <div class="post">
 
-    <div class="post-header index">
+    <div class="post-header">
         <h1 class="title">
             <a href="/2020/01/24/%E8%AE%BE%E8%AE%A1%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/">
                 设计你的代码高亮
@@ -173,9 +170,13 @@
         </div>
     </div>
 
-    
-        <div class="content">
-            <p>之前一直在用一款叫做molokai的主题，尽管molokai很流行，也很漂亮，但是它在neovim上的样式我并不是十分喜欢。比方说它的行号背景，我觉得很突兀，我不喜欢；数字的颜色，我觉得molokai整体的色彩搭配都偏暗，我希望它的数字颜色亮一些；当前行的背景色太明显，我希望它的颜色淡一些；而且我很不习惯它对括号显示的方式。因此我需要对其主题进行一定的修改。</p>
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>之前一直在用一款叫做molokai的主题，尽管molokai很流行，也很漂亮，但是它在neovim上的样式我并不是十分喜欢。比方说它的行号背景，我觉得很突兀，我不喜欢；数字的颜色，我觉得molokai整体的色彩搭配都偏暗，我希望它的数字颜色亮一些；当前行的背景色太明显，我希望它的颜色淡一些；而且我很不习惯它对括号显示的方式。因此我需要对其主题进行一定的修改。</p>
 <p><img src="https://s2.ax1x.com/2020/01/24/1Z4w8I.md.png" alt="molokai"></p>
 <hr>
 <p>我的修改：</p>
@@ -253,131 +254,25 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" Remove all existing highlighting and set the defaults.</span></span><br><span class="line"><span class="keyword">hi</span> clear</span><br><span class="line"></span><br><span class="line"><span class="comment">" Load the syntax highlighting defaults, if it's enabled.</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">exists</span>(<span class="string">"syntax_on"</span>)</span><br><span class="line">  <span class="keyword">syntax</span> reset</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"><span class="keyword">let</span> colors_name = <span class="string">"vegeta"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> &amp;t_Co &gt; <span class="number">255</span></span><br><span class="line">   <span class="keyword">hi</span> Normal                       ctermbg=<span class="number">234</span></span><br><span class="line">   <span class="keyword">hi</span> CursorLine                   ctermbg=<span class="number">233</span>   cterm=none</span><br><span class="line">   <span class="keyword">hi</span> CursorLineNr    ctermfg=<span class="number">208</span>                cterm=none</span><br><span class="line">   <span class="keyword">hi</span> Boolean         ctermfg=<span class="number">135</span></span><br><span class="line">   <span class="keyword">hi</span> Character       ctermfg=<span class="number">144</span></span><br><span class="line">   <span class="keyword">hi</span> Number          ctermfg=<span class="number">190</span></span><br><span class="line">   <span class="keyword">hi</span> String          ctermfg=<span class="number">144</span></span><br><span class="line">   <span class="keyword">hi</span> Conditional     ctermfg=<span class="number">161</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Constant        ctermfg=<span class="number">135</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Cursor          ctermfg=<span class="number">16</span>   ctermbg=<span class="number">253</span></span><br><span class="line">   <span class="keyword">hi</span> Debug           ctermfg=<span class="number">225</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Define          ctermfg=<span class="number">81</span></span><br><span class="line">   <span class="keyword">hi</span> Delimiter       ctermfg=<span class="number">241</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> DiffAdd                      ctermbg=<span class="number">24</span></span><br><span class="line">   <span class="keyword">hi</span> DiffChange      ctermfg=<span class="number">181</span>  ctermbg=<span class="number">239</span></span><br><span class="line">   <span class="keyword">hi</span> DiffDelete      ctermfg=<span class="number">162</span>  ctermbg=<span class="number">53</span></span><br><span class="line">   <span class="keyword">hi</span> DiffText                     ctermbg=<span class="number">102</span>   cterm=bold</span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> Directory       ctermfg=<span class="number">118</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Error           ctermfg=<span class="number">219</span>  ctermbg=<span class="number">124</span></span><br><span class="line">   <span class="keyword">hi</span> ErrorMsg        ctermfg=<span class="number">199</span>  ctermbg=<span class="number">16</span>    cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Exception       ctermfg=<span class="number">118</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Float           ctermfg=<span class="number">135</span></span><br><span class="line">   <span class="keyword">hi</span> FoldColumn      ctermfg=<span class="number">67</span>   ctermbg=<span class="number">16</span></span><br><span class="line">   <span class="keyword">hi</span> Folded          ctermfg=<span class="number">67</span>   ctermbg=<span class="number">16</span></span><br><span class="line">   <span class="keyword">hi</span> Function        ctermfg=<span class="number">118</span></span><br><span class="line">   <span class="keyword">hi</span> Identifier      ctermfg=<span class="number">208</span>                cterm=none</span><br><span class="line">   <span class="keyword">hi</span> Ignore          ctermfg=<span class="number">244</span>  ctermbg=<span class="number">232</span></span><br><span class="line">   <span class="keyword">hi</span> IncSearch       ctermfg=<span class="number">193</span>  ctermbg=<span class="number">16</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> keyword         ctermfg=<span class="number">161</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Label           ctermfg=<span class="number">229</span>                cterm=none</span><br><span class="line">   <span class="keyword">hi</span> Macro           ctermfg=<span class="number">193</span></span><br><span class="line">   <span class="keyword">hi</span> SpecialKey      ctermfg=<span class="number">81</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> MatchParen      ctermfg=<span class="number">208</span>  ctermbg=<span class="number">233</span>   cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> ModeMsg         ctermfg=<span class="number">229</span></span><br><span class="line">   <span class="keyword">hi</span> MoreMsg         ctermfg=<span class="number">229</span></span><br><span class="line">   <span class="keyword">hi</span> Operator        ctermfg=<span class="number">161</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">" complete menu</span></span><br><span class="line">   <span class="keyword">hi</span> Pmenu           ctermfg=<span class="number">220</span>  ctermbg=<span class="number">233</span></span><br><span class="line">   <span class="keyword">hi</span> PmenuSel        ctermfg=<span class="number">255</span>  ctermbg=<span class="number">242</span></span><br><span class="line">   <span class="keyword">hi</span> PmenuSbar                    ctermbg=<span class="number">232</span></span><br><span class="line">   <span class="keyword">hi</span> PmenuThumb      ctermfg=<span class="number">220</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> PreCondit       ctermfg=<span class="number">118</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> PreProc         ctermfg=<span class="number">118</span></span><br><span class="line">   <span class="keyword">hi</span> Question        ctermfg=<span class="number">220</span></span><br><span class="line">   <span class="keyword">hi</span> Repeat          ctermfg=<span class="number">161</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Search          ctermfg=<span class="number">0</span>    ctermbg=<span class="number">222</span>   cterm=NONE</span><br><span class="line"></span><br><span class="line">   <span class="comment">" marks column</span></span><br><span class="line">   <span class="keyword">hi</span> SignColumn      ctermfg=<span class="number">118</span>  ctermbg=<span class="number">235</span></span><br><span class="line">   <span class="keyword">hi</span> SpecialChar     ctermfg=<span class="number">161</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> SpecialComment  ctermfg=<span class="number">245</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> Special         ctermfg=<span class="number">81</span></span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">has</span>(<span class="string">"spell"</span>)</span><br><span class="line">       <span class="keyword">hi</span> SpellBad                 ctermbg=<span class="number">52</span></span><br><span class="line">       <span class="keyword">hi</span> SpellCap                 ctermbg=<span class="number">17</span></span><br><span class="line">       <span class="keyword">hi</span> SpellLocal               ctermbg=<span class="number">17</span></span><br><span class="line">       <span class="keyword">hi</span> SpellRare   ctermfg=none ctermbg=none  cterm=<span class="built_in">reverse</span></span><br><span class="line">   <span class="keyword">endif</span></span><br><span class="line">   <span class="keyword">hi</span> Statement       ctermfg=<span class="number">161</span>                cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> StorageClass    ctermfg=<span class="number">208</span></span><br><span class="line">   <span class="keyword">hi</span> Structure       ctermfg=<span class="number">81</span></span><br><span class="line">   <span class="keyword">hi</span> Tag             ctermfg=<span class="number">161</span></span><br><span class="line">   <span class="keyword">hi</span> Title           ctermfg=<span class="number">166</span></span><br><span class="line">   <span class="keyword">hi</span> Todo            ctermfg=<span class="number">231</span>  ctermbg=<span class="number">232</span>   cterm=bold</span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> Typedef         ctermfg=<span class="number">81</span></span><br><span class="line">   <span class="keyword">hi</span> Type            ctermfg=<span class="number">81</span>                 cterm=none</span><br><span class="line">   <span class="keyword">hi</span> Underlined      ctermfg=<span class="number">244</span>                cterm=underline</span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> VertSplit       ctermfg=<span class="number">244</span>  ctermbg=<span class="number">232</span>   cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> VisualNOS                    ctermbg=<span class="number">238</span></span><br><span class="line">   <span class="keyword">hi</span> Visual          ctermfg=<span class="number">220</span>  ctermbg=<span class="number">241</span></span><br><span class="line">   <span class="keyword">hi</span> WarningMsg      ctermfg=<span class="number">231</span>  ctermbg=<span class="number">238</span>   cterm=bold</span><br><span class="line">   <span class="keyword">hi</span> WildMenu        ctermfg=<span class="number">81</span>   ctermbg=<span class="number">16</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> Comment         ctermfg=<span class="number">59</span></span><br><span class="line">   <span class="keyword">hi</span> CursorColumn                 ctermbg=<span class="number">233</span></span><br><span class="line">   <span class="keyword">hi</span> ColorColumn                  ctermbg=<span class="number">236</span></span><br><span class="line">   <span class="keyword">hi</span> LineNr          ctermfg=<span class="number">250</span>  ctermbg=<span class="number">0</span></span><br><span class="line">   <span class="keyword">hi</span> NonText         ctermfg=<span class="number">59</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">hi</span> SpecialKey      ctermfg=<span class="number">59</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">set</span> statusline=%<span class="number">1</span>*\%&lt;%.<span class="number">50</span>F\                                     <span class="comment">"显示文件名和文件路径</span></span><br><span class="line">   <span class="keyword">set</span> statusline+=%=%<span class="number">2</span>*\%<span class="keyword">y</span>%<span class="keyword">m</span>%r%h%<span class="keyword">w</span>\ %*                            <span class="comment">"显示文件类型及文件状态</span></span><br><span class="line">   <span class="keyword">set</span> statusline+=%<span class="number">3</span>*\%&#123;&amp;ff&#125;\[%&#123;&amp;fenc&#125;]\ %*                       <span class="comment">"显示文件编码类型</span></span><br><span class="line">   <span class="keyword">set</span> statusline+=%<span class="number">5</span>*\%<span class="number">3</span><span class="keyword">p</span>%%\%*                                    <span class="comment">"显示光标前文本所占总文本的比例</span></span><br><span class="line">   <span class="keyword">hi</span> User1 cterm=none ctermfg=<span class="number">12</span>  ctermbg=<span class="number">0</span></span><br><span class="line">   <span class="keyword">hi</span> User2 cterm=none ctermfg=<span class="number">208</span> ctermbg=<span class="number">0</span></span><br><span class="line">   <span class="keyword">hi</span> User3 cterm=none ctermfg=<span class="number">169</span> ctermbg=<span class="number">0</span></span><br><span class="line">   <span class="keyword">hi</span> User5 cterm=none ctermfg=green ctermbg=<span class="number">0</span></span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
 <p>关于vim状态栏的设计，可以参考我的另外一篇<a href="https://blog.csdn.net/l_changyun/article/details/98252459" target="_blank" rel="noopener">博客</a></p>
 
-        </div>
-    
-
-</div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2020/01/22/%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%9A%84%E8%84%9A%E6%9C%AC/">
-                Linux系统更换壁纸的脚本
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2020-01-22</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/配置/">配置</a>
-                </span>
-            
-        </div>
     </div>
 
     
-        <div class="content">
-            <h2 id="安装feh"><a href="#安装feh" class="headerlink" title="安装feh"></a>安装feh</h2><p>feh 是用来打开图片和设置壁纸的一款软件，本脚本中通过feh实现壁纸更换功能</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install feh</span><br></pre></td></tr></table></figure>
-<p>我壁纸目录下的文件如下：</p>
-<p><img src="https://s2.ax1x.com/2020/01/22/1AhYan.md.png" alt="wallpapers"></p>
-<ul>
-<li><code>wallpapers.sh</code>是我的脚本文件</li>
-</ul>
-<hr>
-<p><code>name=`ls ~/Pictures/wallpapers/ |grep -v .sh`</code>获取除<code>.sh</code> 文件的所有文件名字</p>
-<p><code>nameArray=(${name})</code>将文件名字存入nameArray数组中</p>
-<p><code>N=${ #nameArray[*] }</code>获取数组中的元素数量</p>
-<p><code>var=${nameArray[$[RANDOM%$N]]}</code>生成随机数，并取出其在数组中对应的壁纸</p>
-<p><code>feh --bg-scale ~/Pictures/wallpapers/$var</code>设置壁纸</p>
-<p>整体代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">name=`ls ~/Pictures/wallpapers/ |grep -v .sh`</span><br><span class="line">nameArray=(<span class="variable">$&#123;name&#125;</span>)</span><br><span class="line">N=<span class="variable">$&#123;#nameArray[*]&#125;</span></span><br><span class="line">var=<span class="variable">$&#123;nameArray[$[RANDOM%$N]]&#125;</span></span><br><span class="line">feh --<span class="built_in">bg</span>-scale ~/Pictures/wallpapers/<span class="variable">$var</span></span><br></pre></td></tr></table></figure>
 
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/neovim/">#neovim</a> <a href="/tags/linux/">#linux</a> <a href="/tags/config/">#config</a>
         </div>
+    
+
+    <!-- Comments -->
     
 
 </div>
-            
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2020/01/22/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAhexo%E5%8D%9A%E5%AE%A2/">
-                搭建一个hexo博客
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2020-01-22</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/配置/">配置</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="安装依赖环境"><a href="#安装依赖环境" class="headerlink" title="安装依赖环境"></a>安装依赖环境</h2><ul>
-<li>git</li>
-<li>npm</li>
-<li>nodejs</li>
-</ul>
-<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<h3 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br></pre></td></tr></table></figure>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h3 id="hexo的使用"><a href="#hexo的使用" class="headerlink" title="hexo的使用"></a>hexo的使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init folder</span><br></pre></td></tr></table></figure>
-<p>初始化一个文件夹作为你的blog</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new file</span><br></pre></td></tr></table></figure>
-<p>在/folder/source/_posts/路径下新建一个file.md文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>打开本地预览，在<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>预览博客</p>
-<h3 id="修改Hexo主题"><a href="#修改Hexo主题" class="headerlink" title="修改Hexo主题"></a>修改Hexo主题</h3><p>你可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes|Hexo</a>下载你喜欢的主题，将下载好的主题文件夹移动到<code>/folder/themes/</code>下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> theme<span class="string">'s site</span></span><br></pre></td></tr></table></figure>
-<p>你可以添加about，tags，categories，contact等信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page contact</span><br></pre></td></tr></table></figure>
-<p>修改<code>/folder/_config.yml</code>完成主题的更换</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">your</span> <span class="string">theme</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>/folder/themes/your theme</code>可以选择配置你的主题样式，如果你会CSS，你也可以修改主题的样式模板</p>
-<h2 id="部署到github远端"><a href="#部署到github远端" class="headerlink" title="部署到github远端"></a>部署到github远端</h2><h3 id="添加你的github信息"><a href="#添加你的github信息" class="headerlink" title="添加你的github信息"></a>添加你的github信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"yourname"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建ssh"><a href="#创建ssh" class="headerlink" title="创建ssh"></a>创建ssh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
-<p>在<code>~/.ssh/</code>文件夹中存在<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，其中<code>id_rsa.pub</code>是公钥，把它复制粘贴到github上:</p>
-<ul>
-<li><code>setting &gt; SSH and GPG keys &gt; New SSH key</code> — 粘贴</li>
-</ul>
-<h3 id="安装deploy-git"><a href="#安装deploy-git" class="headerlink" title="安装deploy-git"></a>安装deploy-git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>修改/folder/_config.yml文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">'git'</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/yourGithub/yourGithub.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<h3 id="推送到远端"><a href="#推送到远端" class="headerlink" title="推送到远端"></a>推送到远端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通过<code>hexo clean</code>可以清除之前生成的内容</li>
-<li>通过<code>hexo g</code>生成静态博客</li>
-</ul>
-<p>更多教程请参考<a href="https://hexo.io/docs/" target="_blank" rel="noopener">Documentation/Hexo</a></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
+
     </div>
 </div>
-
-
-
-
 
 
 </div>
