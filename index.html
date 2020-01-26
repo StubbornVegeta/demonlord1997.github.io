@@ -156,6 +156,60 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2020/01/25/Install-fzf(%E6%A8%A1%E7%B3%8A%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE)/">
+                Install fzf（模糊文件查找）
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-01-25</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/配置/">配置</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="shell下的fzf"><a href="#shell下的fzf" class="headerlink" title="shell下的fzf"></a>shell下的fzf</h2><h3 id="安装ccat"><a href="#安装ccat" class="headerlink" title="安装ccat"></a>安装ccat</h3><p>ccat和cat的功能一样，但是ccat能够高亮显示，但是cat不能，ccat安装方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz</span><br><span class="line">tar -xvf  linux-amd64-1.1.0.tar.gz</span><br><span class="line">sudo cp ./linux-amd64-1.1.0/ccat  /usr/bin/</span><br></pre></td></tr></table></figure>
+<h3 id="安装fzf"><a href="#安装fzf" class="headerlink" title="安装fzf"></a>安装fzf</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth 1 https://github.com/junegunn/fzf.git ~/.fzf</span><br><span class="line">~/.fzf/install</span><br></pre></td></tr></table></figure>
+<p>当然你需要确保你安装了git</p>
+<h3 id="配置zshrc"><a href="#配置zshrc" class="headerlink" title="配置zshrc"></a>配置zshrc</h3><p>在你的zshrc中写入：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> FZF_DEFAULT_OPTS=<span class="string">'--bind ctrl-j:down,ctrl-k:up --preview "[[ $(file --mime &#123;&#125;) =~ binary ]] &amp;&amp; echo &#123;&#125; is a binary file || (ccat --color=always &#123;&#125; || highlight -O ansi -l &#123;&#125; || cat &#123;&#125;) 2&gt; /dev/null | head -500"'</span></span><br><span class="line"><span class="built_in">export</span> FZF_DEFAULT_COMMAND=<span class="string">'fd --type f --hidden --follow --exclude .git . ~/.config /home / '</span></span><br><span class="line"><span class="built_in">export</span> FZF_COMPLETION_TRIGGER=<span class="string">'\'</span></span><br><span class="line"><span class="built_in">export</span> FZF_PREVIEW_COMMAND=<span class="string">'[[ $(file --mime &#123;&#125;) =~ binary ]] &amp;&amp; echo &#123;&#125; is a binary file || (ccat --color=always &#123;&#125; || highlight -O ansi -l &#123;&#125; || cat &#123;&#125;) 2&gt; /dev/null | head -500'</span></span><br></pre></td></tr></table></figure>
+<p>如果你用的是bash或其他shell，应该也是可以的，你只要在相应的rc中写入这段命令就可以了</p>
+<p>终端输入fzf就可以开始查找文件了，fzf会返回你的文件路径</p>
+<p><img src="https://s2.ax1x.com/2020/01/25/1eW2tA.md.png" alt="shell_fzf"></p>
+<p>而且fzf可以和其他命令很好的交互，比方说我用vim和fzf交互，只需要输入<code>vim \</code>然后按下&lt;Tab&gt;键，就可以查找我需要编辑的文件，找到后按下回车就可以开始编辑文件</p>
+<p><img src="https://s2.ax1x.com/2020/01/26/1mDBuj.md.png" alt="shell_interfzf"></p>
+<p>ps: 我额外安装了<a href="https://github.com/sharkdp/fd">fd</a>作为搜索工具</p>
+<h2 id="neovim下的fzf"><a href="#neovim下的fzf" class="headerlink" title="neovim下的fzf"></a>neovim下的fzf</h2><h3 id="安装fzf-vim"><a href="#安装fzf-vim" class="headerlink" title="安装fzf.vim"></a>安装fzf.vim</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Plug <span class="string">'junegunn/fzf'</span>, &#123; <span class="string">'dir'</span>: <span class="string">'~/.fzf'</span>, <span class="string">'do'</span>: <span class="string">'./install --all'</span> &#125;</span><br><span class="line">Plug <span class="string">'junegunn/fzf.vim'</span></span><br></pre></td></tr></table></figure>
+<h3 id="配置fzf"><a href="#配置fzf" class="headerlink" title="配置fzf"></a>配置fzf</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" find file</span></span><br><span class="line"><span class="keyword">noremap</span> \ :FZF<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="comment">" find history</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;C-h&gt;</span> :MRU<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="comment">" find lines containing keywords</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;C-l&gt;</span> :LinesWithPreview<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"><span class="comment">" find buffer</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;C-b&gt;</span> :Buffers<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"></span><br><span class="line">autocmd! FileType fzf</span><br><span class="line"><span class="keyword">autocmd</span>  FileType fzf <span class="keyword">set</span> laststatus=<span class="number">0</span> noruler</span><br><span class="line">  \| <span class="keyword">autocmd</span> BufLeave <span class="symbol">&lt;buffer&gt;</span> <span class="keyword">set</span> laststatus=<span class="number">2</span> ruler</span><br><span class="line"></span><br><span class="line">command! -bang -nargs=* Buffers</span><br><span class="line">  \ <span class="keyword">call</span> fzf#vim#buffers(</span><br><span class="line">  \   <span class="string">''</span>,</span><br><span class="line">  \   <span class="symbol">&lt;bang&gt;</span><span class="number">0</span> ? fzf#vim#with_preview(<span class="string">'up:60%'</span>)</span><br><span class="line">  \           : fzf#vim#with_preview(<span class="string">'right:0%'</span>, <span class="string">'?'</span>),</span><br><span class="line">  \   <span class="symbol">&lt;bang&gt;</span><span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">command! -bang -nargs=* LinesWithPreview</span><br><span class="line">    \ <span class="keyword">call</span> fzf#vim#grep(</span><br><span class="line">    \   <span class="string">'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '</span>.<span class="built_in">fnameescape</span>(<span class="built_in">expand</span>(<span class="string">'%'</span>)), <span class="number">1</span>,</span><br><span class="line">    \   fzf#vim#with_preview(&#123;<span class="string">'options'</span>: <span class="string">'--delimiter : --nth 4.. --sort'</span>&#125;, <span class="string">'up:50%'</span>, <span class="string">'?'</span>),</span><br><span class="line">    \   <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">command! -bang -nargs=* MRU <span class="keyword">call</span> fzf#vim#history(fzf#vim#with_preview())</span><br></pre></td></tr></table></figure>
+<p>当我在vim中按下”&quot;，vim会调用fzf查找你需要编辑的文件，选中文件后回车即可编辑<br><img src="https://s2.ax1x.com/2020/01/26/1mrpVI.md.png" alt="VIM#FZF"></p>
+<p>当我在vim中按下”Ctrl+h”，vim会显示你最近打开的文件<br><img src="https://s2.ax1x.com/2020/01/26/1mriPf.png" alt="VIM#FZF#buffer"></p>
+<p>当我在vim中按下”Ctrl+l”，vim会高亮包含你搜索关键词的一行代码<br><img src="https://s2.ax1x.com/2020/01/26/1mrVMQ.md.png" alt="VIM#FZF#history"></p>
+<p>当我在vim中按下”Ctrl+b”，vim会显示当前你打开的buffer，输入数字或者符号即可跳转buffer<br><img src="https://s2.ax1x.com/2020/01/26/1mrnZn.md.png" alt="VIM#FZF#lines"></p>
+<h2 id="ranger下的fzf"><a href="#ranger下的fzf" class="headerlink" title="ranger下的fzf"></a>ranger下的fzf</h2><h3 id="修改ranger的commands-py"><a href="#修改ranger的commands-py" class="headerlink" title="修改ranger的commands.py"></a>修改ranger的commands.py</h3><p>在<code>commands.py</code>中定义<code>fzf_select</code>类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fzf_select</span><span class="params">(Command)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :fzf_select</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Find a file using fzf.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    With a prefix argument select only directories.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    See: https://github.com/junegunn/fzf</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">import</span> subprocess</span><br><span class="line">        <span class="keyword">import</span> os.path</span><br><span class="line">        <span class="keyword">if</span> self.quantifier:</span><br><span class="line">            <span class="comment"># match only directories</span></span><br><span class="line">            command=<span class="string">"find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \</span></span><br><span class="line"><span class="string">            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m"</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># match files and directories</span></span><br><span class="line">            command=<span class="string">"find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \</span></span><br><span class="line"><span class="string">            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m"</span></span><br><span class="line">        fzf = self.fm.execute_command(command, universal_newlines=<span class="literal">True</span>, stdout=subprocess.PIPE)</span><br><span class="line">        stdout, stderr = fzf.communicate()</span><br><span class="line">        <span class="keyword">if</span> fzf.returncode == <span class="number">0</span>:</span><br><span class="line">            fzf_file = os.path.abspath(stdout.rstrip(<span class="string">'\n'</span>))</span><br><span class="line">            <span class="keyword">if</span> os.path.isdir(fzf_file):</span><br><span class="line">                self.fm.cd(fzf_file)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.fm.select_file(fzf_file)</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置你的rc-conf"><a href="#配置你的rc-conf" class="headerlink" title="配置你的rc.conf"></a>配置你的rc.conf</h3><p>在你的rc.conf中写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map \ fzf_select</span><br></pre></td></tr></table></figure>
+<p><img src="https://s2.ax1x.com/2020/01/26/1mrTyQ.md.png" alt="Ranger#FZF"></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2020/01/24/%E8%AE%BE%E8%AE%A1%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/">
                 设计你的代码高亮
             </a>
@@ -398,6 +452,10 @@
     <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
         <h2>Recent Posts</h2>
         <ul>
+            
+            <li>
+                <a class="footer-post" href="/2020/01/25/Install-fzf(%E6%A8%A1%E7%B3%8A%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE)/">Install fzf（模糊文件查找）</a>
+            </li>
             
             <li>
                 <a class="footer-post" href="/2020/01/24/%E8%AE%BE%E8%AE%A1%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE/">设计你的代码高亮</a>
