@@ -309,7 +309,21 @@
 <td>win+shift+e</td>
 <td>退出dwm</td>
 </tr>
+<tr>
+<td>Fn+F3(增加音量键)</td>
+<td>增加音量</td>
+</tr>
+<tr>
+<td>Fn+F2</td>
+<td>减音量</td>
+</tr>
+<tr>
+<td>Fn+F1</td>
+<td>静音</td>
+</tr>
 </tbody></table>
+<p>如果你想使用Fn+其他的键，你需要导入系统的XF86keysym.h头文件，我是在dwm.c中添加了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;X11/XF86keysym.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 <h2 id="dwm-scripts"><a href="#dwm-scripts" class="headerlink" title="dwm scripts"></a>dwm scripts</h2><p>我的一些脚本<a href="https://github.com/demonlord1997/script">script</a></p>
 <p>script中需要安装的软件</p>
 <ul>
