@@ -156,6 +156,180 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2020/01/31/Configure-your-dwm/">
+                Configure your dwm
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-01-31</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/配置/">配置</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p><a href="https://dwm.suckless.org/" target="_blank" rel="noopener">dwm</a>是<a href="https://suckless.org/" target="_blank" rel="noopener">suckless</a>开发的一款轻量级的桌面，你可以通过git下载，也可以进入dwm的官网<code>(https://dwm.suckless.org/)</code>下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;git.suckless.org&#x2F;dwm</span><br></pre></td></tr></table></figure>
+<h2 id="我的配置过程"><a href="#我的配置过程" class="headerlink" title="我的配置过程"></a>我的配置过程</h2><h3 id="编译流程"><a href="#编译流程" class="headerlink" title="编译流程"></a>编译流程</h3><ol>
+<li><p>将config.def.h重命名为config.h</p>
+<p> <code>mv config.def.h config.h</code></p>
+</li>
+</ol>
+<ol start="2">
+<li><p>编译</p>
+<p> <code>sudo make clean install</code></p>
+</li>
+</ol>
+<h3 id="配置开机启动项（我一般用lightdm管理）"><a href="#配置开机启动项（我一般用lightdm管理）" class="headerlink" title="配置开机启动项（我一般用lightdm管理）"></a>配置开机启动项（我一般用lightdm管理）</h3><blockquote>
+<p>参考自Kerr</p>
+</blockquote>
+<p>创建/usr/share/xsessions/dwm.desktop 文件，写入以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Encoding&#x3D;UTF-8</span><br><span class="line">Name&#x3D;dwm</span><br><span class="line">Comment&#x3D;Dynamic window manager</span><br><span class="line">Exec&#x3D;dwm</span><br><span class="line">Icon&#x3D;dwm</span><br><span class="line">Type&#x3D;XSession</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="dwm补丁文件"><a href="#dwm补丁文件" class="headerlink" title="dwm补丁文件"></a>dwm补丁文件</h2><ul>
+<li><p><a href="https://dwm.suckless.org/patches/alpha/dwm-alpha-20180613-b69c870.diff" target="_blank" rel="noopener">dwm-alpha-20180613-b69c870.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/autostart/dwm-autostart-20161205-bb3bd6f.diff" target="_blank" rel="noopener">dwm-autostart-20161205-bb3bd6f.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/fullscreen/dwm-fullscreen-6.2.diff" target="_blank" rel="noopener">dwm-fullscreen-6.2.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/hide_vacant_tags/dwm-hide_vacant_tags-6.2.diff" target="_blank" rel="noopener">dwm-hide_vacant_tags-6.2.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/pertag/dwm-pertag-20170513-ceac8c9.diff" target="_blank" rel="noopener">dwm-pertag-20170513-ceac8c9.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/viewontag/dwm-r1522-viewontag.diff" target="_blank" rel="noopener">dwm-r1522-viewontag.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/rotatestack/dwm-rotatestack-20161021-ab9571b.diff" target="_blank" rel="noopener">dwm-rotatestack-20161021-ab9571b.diff</a></p>
+</li>
+<li><p><a href="https://dwm.suckless.org/patches/vanitygaps/dwm-vanitygaps-20190508-6.2.diff" target="_blank" rel="noopener">dwm-vanitygaps-20190508-6.2.diff</a></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>patch</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alpha</td>
+<td>为dwm添加窗口透明功能</td>
+</tr>
+<tr>
+<td>autostart</td>
+<td>配置进入dwm时的启动软件</td>
+</tr>
+<tr>
+<td>fullscreen</td>
+<td>为dwm添加全屏功能</td>
+</tr>
+<tr>
+<td>hide_vacant_tags</td>
+<td>隐藏空tags（没有软件运行的tags）</td>
+</tr>
+<tr>
+<td>pertag</td>
+<td>不同tag拥有不同的窗口布局</td>
+</tr>
+<tr>
+<td>viewontag</td>
+<td>移动窗口至新tag时，视窗随之转换至新tag</td>
+</tr>
+<tr>
+<td>rotatestack</td>
+<td>在打开的窗口之间循环</td>
+</tr>
+<tr>
+<td>vanitygaps</td>
+<td>添加窗口之间的间隙</td>
+</tr>
+</tbody></table>
+<p>但是rotatestack的工作方式并不是我想要的，它总是在移动窗口的同时把光标也随着一起移动过去，我希望我选中的窗口能够循环地出现在我的master区，即我屏幕的左半部分，这样我编辑起来更加方便，所以我需要对这个补丁进行更改，禁止它的光标移动。</p>
+<p>其实做法也很简单，你只需要在你打完补丁的dwm.c文件中，注释掉下面几行即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!selmon-&gt;sel)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">f = selmon-&gt;sel;</span><br></pre></td></tr></table></figure>
+<p>或者你只注释掉f = selmon-&gt;sel;也可以</p>
+<p>效果如下（gif动图看起来有些卡）</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/18GgvF.gif" alt="dwm"></p>
+<h3 id="我的键位配置"><a href="#我的键位配置" class="headerlink" title="我的键位配置"></a>我的键位配置</h3><p>我的dwm配置已经传到我的<a href="https://github.com/demonlord1997/dwm">github</a></p>
+<table>
+<thead>
+<tr>
+<th>keybinds</th>
+<th>function</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>win+o</td>
+<td>循环移动窗口</td>
+</tr>
+<tr>
+<td>win+shift+o</td>
+<td>循环移动光标</td>
+</tr>
+<tr>
+<td>win+z</td>
+<td>当前窗口置为主窗口</td>
+</tr>
+<tr>
+<td>win+shift+number</td>
+<td>移动当前窗口到指定tag</td>
+</tr>
+<tr>
+<td>win+number</td>
+<td>移动到指定tag</td>
+</tr>
+<tr>
+<td>win+t</td>
+<td>窗口设为平铺模式</td>
+</tr>
+<tr>
+<td>win+s</td>
+<td>窗口设为浮动模式</td>
+</tr>
+<tr>
+<td>win+m</td>
+<td>窗口设为层叠模式</td>
+</tr>
+<tr>
+<td>win+shift+t</td>
+<td>打开/关闭图标面板（trayer）</td>
+</tr>
+<tr>
+<td>win+shift+q</td>
+<td>关闭打开的软件</td>
+</tr>
+<tr>
+<td>win+shift+e</td>
+<td>退出dwm</td>
+</tr>
+</tbody></table>
+<h2 id="dwm-scripts"><a href="#dwm-scripts" class="headerlink" title="dwm scripts"></a>dwm scripts</h2><p>我的一些脚本<a href="https://github.com/demonlord1997/script">script</a></p>
+<p>script中需要安装的软件</p>
+<ul>
+<li>acpi</li>
+<li>acpitool</li>
+<li>trayer</li>
+<li>compton</li>
+</ul>
+<p>我的dwm最终效果如下：<br><img src="https://s2.ax1x.com/2020/02/01/18XGmq.md.png" alt="dwm"></p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2020/01/25/Install-fzf(%E6%A8%A1%E7%B3%8A%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE)/">
                 Install fzf（模糊文件查找）
             </a>
@@ -454,6 +628,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2020/01/31/Configure-your-dwm/">Configure your dwm</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2020/01/25/Install-fzf(%E6%A8%A1%E7%B3%8A%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE)/">Install fzf（模糊文件查找）</a>
             </li>
             
@@ -463,10 +641,6 @@
             
             <li>
                 <a class="footer-post" href="/2020/01/22/%E6%9B%B4%E6%8D%A2%E5%A3%81%E7%BA%B8%E7%9A%84%E8%84%9A%E6%9C%AC/">Linux系统更换壁纸的脚本</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2020/01/22/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAhexo%E5%8D%9A%E5%AE%A2/">搭建一个hexo博客</a>
             </li>
             
         </ul>
