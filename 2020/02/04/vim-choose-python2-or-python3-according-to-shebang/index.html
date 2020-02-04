@@ -20,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="about"/>
+        <meta property="og:title" content="vim根据shebang判断python2还是python3"/>
     
 
     <!--Open Graph Description-->
@@ -47,7 +47,7 @@
 
     <!-- Title -->
     
-    <title>about - Stubborn Vegeta</title>
+    <title>vim根据shebang判断python2还是python3 - Stubborn Vegeta</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -140,28 +140,32 @@
     <div class="col-sm-12">
 
         <!--Title and Logo-->
-        
-            <header>
+        <header>
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
     </div>
 </header>
-            <section class="main">
-                
+
+        <section class="main">
+            
 <div class="post">
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/about/index.html">
-                about
+            <a href="/2020/02/04/vim-choose-python2-or-python3-according-to-shebang/">
+                vim根据shebang判断python2还是python3
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2020-01-21</span>
+                <span class="date">2020-02-04</span>
             
             
+            
+                <span class="category">
+                    <a href="/categories/配置/">配置</a>
+                </span>
             
         </div>
     </div>
@@ -172,43 +176,42 @@
         
 
         <!-- Post Content -->
-        <p>倔强的贝吉塔的博客</p>
-<p>我会在这里写一些LaTeX、Python、Shell、Vimscript的代码或者一些系统、软件的配置文件</p>
+        <h2 id="shebang"><a href="#shebang" class="headerlink" title="shebang"></a>shebang</h2><p>shebang 通常写在脚本文件的第一行，用符号（#!）表示，#!后面跟着解释器的绝对路径。</p>
+<p>当脚本被赋予可执行权限时，系统会选择shebang指定的解释器去执行脚本。</p>
+<p>目前python已经分为了python2和python3两个版本，一些库还停留在python2版本，但是有时候我们还不得不用这些库，所以我们可能会在python2和python3之间切换，可我不想手动选择采用python2还是python3运行我的代码，那么如何在vim运行python文件时，选择shebang指定的解释器运行文件呢？</p>
 <ul>
-<li><p>我的<a href="https://github.com/demonlord1997">github</a></p>
+<li><p>我们可以在vim中使用global命令匹配shebang，比如在文件中看shebang有没有指定python2的解释器，那么我们只需要采用正则表达式寻找一个以#!开头、以python2结尾的字符串<br><code>[silent] exec g /^#!.*python2$/ %</code><br>silent 表示静默运行，即不输出运行信息，可加可不加</p>
 </li>
-<li><p>我的<a href="https://me.csdn.net/l_changyun" target="_blank" rel="noopener">CSDN</a></p>
-</li>
-<li><p>我的<a href="https://space.bilibili.com/155948618" target="_blank" rel="noopener">B站</a>, 但是我可能不经常更新</p>
+<li><p>将匹配结果存入寄存器a中<br>我们只需要在正则表达式前后添加重定向语句redir即可</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">redir</span> @a</span><br><span class="line"></span><br><span class="line"><span class="symbol">&lt;command&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">redir</span> END</span><br></pre></td></tr></table></figure></li>
+<li><p>判断寄存器a的值</p>
 </li>
 </ul>
-<p>如果你喜欢音乐，可以搜索我的网易云音乐（__倔强的贝吉塔）</p>
-<hr>
-<p>This is stubborn vegeta’s blog.</p>
-<p>I will write some code (LaTeX, Python, Shell, Vimscript, or some config file).</p>
-<ul>
-<li><p>My <a href="https://github.com/demonlord1997">github</a></p>
-</li>
-<li><p>My <a href="https://me.csdn.net/l_changyun" target="_blank" rel="noopener">CSDN</a></p>
-</li>
-<li><p>My <a href="https://space.bilibili.com/155948618" target="_blank" rel="noopener">B站</a>, but I may not update it often.</p>
-</li>
-</ul>
-<p>If you like music, you can search my netease cloud music (__倔强的贝吉塔).</p>
-<p>That’s all.</p>
+<p>global命令如果匹配到字符串，返回为空；如果匹配不到字符串，则返回Pattern not find。所以如果寄存器a为空则选择python2运行，否则python3运行。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> @a == <span class="string">''</span></span><br><span class="line">    :term python2 %;echo '\n[python2]'</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    :term <span class="keyword">python3</span> %</span><br><span class="line"><span class="keyword">endif</span></span><br></pre></td></tr></table></figure>
+
+
+<p>最后贴上整体代码</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;F5&gt;</span> :<span class="keyword">call</span> RunCode()<span class="symbol">&lt;CR&gt;</span></span><br><span class="line">func! RunCode()</span><br><span class="line">    exec <span class="string">"w"</span></span><br><span class="line">    <span class="keyword">if</span> &amp;<span class="keyword">filetype</span> == <span class="string">'python'</span></span><br><span class="line">        <span class="keyword">set</span> splitbelow</span><br><span class="line">        :<span class="keyword">sp</span></span><br><span class="line">        :<span class="keyword">res</span> -<span class="number">10</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">redir</span> @a</span><br><span class="line">        <span class="keyword">silent</span> exec <span class="string">"g /^#!.*python2$/ %"</span></span><br><span class="line">        <span class="keyword">redir</span> END</span><br><span class="line">        <span class="keyword">if</span> @a == <span class="string">''</span></span><br><span class="line">            :term python2 %;echo '\n[python2]'</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            :term <span class="keyword">python3</span> %</span><br><span class="line">        <span class="keyword">endif</span></span><br><span class="line">        <span class="keyword">normal</span> i</span><br><span class="line">    <span class="keyword">endif</span></span><br><span class="line">endfunc</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
     
 
     
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/nvim/">#nvim</a> <a href="/tags/vimscript/">#vimscript</a> <a href="/tags/python/">#python</a>
+        </div>
+    
 
     <!-- Comments -->
     
 
 </div>
-            </section>
-        
+        </section>
+
     </div>
 </div>
 
