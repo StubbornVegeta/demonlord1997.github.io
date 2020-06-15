@@ -200,7 +200,6 @@
 <p><code>--outfile / -o</code>：你的图片名</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 pdf2img.py -i example.pdf -d 400 -f . -o example</span><br></pre></td></tr></table></figure>
 
-
 <h3 id="与vim交互"><a href="#与vim交互" class="headerlink" title="与vim交互"></a>与vim交互</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">autocmd</span> <span class="keyword">filetype</span> tex <span class="keyword">noremap</span> <span class="symbol">&lt;buffer&gt;</span> <span class="symbol">&lt;LEADER&gt;</span>i :!python3 ~/scripts/pdf2img.<span class="keyword">py</span> -i %&lt;.pdf -<span class="keyword">f</span> %:h -<span class="keyword">o</span> %&lt;<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里没有给dpi参数，直接按照默认的分辨率生成图片。</p>
 <p>在你编译完tex文件生成pdf以后，按下&lt;leader&gt;+i 会自动调用pdf2img.py脚本将pdf转为png格式的图片，这里我将pdf2img.py放在了我scripts文件夹下，可以根据需要改成自己的路径。</p>
