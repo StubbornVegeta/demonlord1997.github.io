@@ -156,6 +156,59 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2020/06/26/extract-images-from-pdf/">
+                extract images from pdf
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-06-26</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/配置/">配置</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>不想在做PPT的时候还要从论文中一个一个把图截下来，或者挨个图片保存，这种重复性的工作肯定有更好的解决办法。所以我找到了<code>pdfimages</code></p>
+<p>用法很简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pdfimages -png &lt;PDF-file&gt; &lt;image-root&gt;</span><br><span class="line">e.g.</span><br><span class="line"></span><br><span class="line">pdfimages -png your.pdf images/out</span><br></pre></td></tr></table></figure>
+<p>如果不加<code>-png</code>输出的ppm格式的图片，可能无法插入到PPT中。</p>
+<p>到这里可以结束了，如果想更懒可以新建一个python文件(<code>efig.py</code>)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># efig.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"images"</span>):</span><br><span class="line">    os.makedirs(<span class="string">"images"</span>)</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">'extact_image_from_pdf'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'--inputfile'</span>, <span class="string">'-i'</span>, help=<span class="string">'input your pdf file'</span>,required=<span class="literal">True</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">output = args.inputfile[<span class="number">0</span>:<span class="number">-4</span>]</span><br><span class="line">call([<span class="string">'pdfimages'</span>, <span class="string">'-png'</span>, args.inputfile, <span class="string">'images/'</span>+output])</span><br></pre></td></tr></table></figure>
+<p>这个脚本会自动在你当前目录下创建images文件夹，并将图片名设置为pdf文件名+数字。</p>
+<p>然后你可以修改你的<code>.bashrc</code>或者<code>.zshrc</code>来添加<code>efig</code>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> efig=<span class="string">'python3 ~/scripts/efig.py'</span></span><br></pre></td></tr></table></figure>
+<p>这里我将<code>efig.py</code>放在了<code>~/scripts</code>路径下，你可以根据需要改成你的路径。</p>
+<p>添加好<code>efig</code>命令以后，你可以这样来完成图片的提取：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">efig -i &lt;PDF-file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用<code>ranger</code>文件管理器，可以在<code>commands.py</code>添加<code>efig</code>类：</p>
+<blockquote>
+<p>commands.py文件一般在~/.config/ranger/下</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">efig</span><span class="params">(Command)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :efig &lt;fname&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    extract all image from pdf.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Will create a folder named "images" in the current folder.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">execute</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">from</span> subprocess <span class="keyword">import</span> call</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">"images"</span>):</span><br><span class="line">            os.makedirs(<span class="string">"images"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.arg(<span class="number">1</span>):</span><br><span class="line">            input_file = self.fm.thisfile.path</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            input_file = self.rest(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        output = input_file[<span class="number">0</span>:<span class="number">-4</span>]</span><br><span class="line">        call([<span class="string">'pdfimages'</span>, <span class="string">'-png'</span>, input_file, <span class="string">'images/'</span>+output])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tab</span><span class="params">(self, tabnum)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self._tab_directory_content()</span><br></pre></td></tr></table></figure>
+
+<p>在<code>ranger</code>中输入<code>:efig &lt;PDF-file&gt;</code>即可，效果如图:</p>
+<center>
+<img src="https://s1.ax1x.com/2020/06/26/NrtLz4.gif" alt="ranger" height="80%" width="80%" />
+</center>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2020/06/15/LaTeX-output-to-image/">
                 LaTeX output to image
             </a>
@@ -843,6 +896,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2020/06/26/extract-images-from-pdf/">extract images from pdf</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2020/06/15/LaTeX-output-to-image/">LaTeX output to image</a>
             </li>
             
@@ -852,10 +909,6 @@
             
             <li>
                 <a class="footer-post" href="/2020/02/09/texdoc-package-name-%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0%E6%96%87%E4%BB%B6/">texdoc [ package name ] 提</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2020/02/04/vim-choose-python2-or-python3-according-to-shebang/">vim根据shebang判断python2还是py</a>
             </li>
             
         </ul>
