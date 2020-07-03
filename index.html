@@ -156,6 +156,126 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2020/07/03/PlotNeuralNet%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+                PlotNeuralNet个性化定制与使用说明
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2020-07-03</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/PlotNeuralNet/">PlotNeuralNet</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="如何定制你的PlotNeuralNet"><a href="#如何定制你的PlotNeuralNet" class="headerlink" title="如何定制你的PlotNeuralNet"></a>如何定制你的PlotNeuralNet</h2><p>PlotNeuralNet最新版默认将图形的深度标注在角上，我们一般希望它居中标注。所以我们需要对它进行修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  +-----+       +-----+</span><br><span class="line"> &#x2F;     &#x2F;|      &#x2F;     &#x2F;|</span><br><span class="line">+-----+ |     +-----+ |</span><br><span class="line">|     | +     |     | +</span><br><span class="line">|     |&#x2F;      |     |&#x2F; a</span><br><span class="line">+-----+ a     +-----+</span><br><span class="line">默认效果       期望效果</span><br></pre></td></tr></table></figure>
+<p>只需要修改layers文件夹下的<code>Box.sty</code>和<code>RightBandedBox.sty</code>文件即可。</p>
+<h3 id="Box-sty"><a href="#Box-sty" class="headerlink" title="Box.sty"></a>Box.sty</h3><p>将depthlabel设置中的<code>pos=0</code>改为<code>pos=0.5</code>，后面将captionlabel中的文本宽度修改掉是因为默认宽度有些小，长文本显示不全。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/B.sty b/Box.sty</span><br><span class="line">index 38818a8..854edbb 100644</span><br><span class="line"><span class="comment">--- a/B.sty</span></span><br><span class="line"><span class="comment">+++ b/Box.sty</span></span><br><span class="line"><span class="meta">@@ -42,13 +42,13 @@</span></span><br><span class="line"></span><br><span class="line">         \coordinate (a1) at (0 , \y/2 , \z/2);</span><br><span class="line">         \coordinate (b1) at (0 ,-\y/2 , \z/2);</span><br><span class="line"><span class="deletion">-        \tikzstyle&#123;depthlabel&#125;=[pos=0,text width=14*\z,text centered,sloped]</span></span><br><span class="line"><span class="addition">+        \tikzstyle&#123;depthlabel&#125;=[pos=0.5,text width=14*\z,text centered,sloped]</span></span><br><span class="line"></span><br><span class="line">         \path (c) edge ["\small\zlabel"',depthlabel](f); %depth label</span><br><span class="line">         \path (b1) edge ["\ylabel",midway] (a1);  %height label</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="deletion">-        \tikzstyle&#123;captionlabel&#125;=[text width=15*\LastEastx/\scale,text centered]</span></span><br><span class="line"><span class="addition">+        \tikzstyle&#123;captionlabel&#125;=[text width=40*\LastEastx/\scale,text centered]</span></span><br><span class="line">         \path (\LastEastx/2,-\y/2,+\z/2) + (0,-25pt) coordinate (cap)</span><br><span class="line">         edge ["\textcolor&#123;black&#125;&#123; \bf \caption&#125;"',captionlabel](cap) ; %Block caption/pic object label</span><br></pre></td></tr></table></figure>
+<p><code>Box.sty</code>是修改后的版本。</p>
+<h3 id="RightBandedBox-sty"><a href="#RightBandedBox-sty" class="headerlink" title="RightBandedBox.sty"></a>RightBandedBox.sty</h3><p><code>RightBandedBox.sty</code>的修改与<code>Box.sty</code>的修改类似。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/R.sty b/RightBandedBox.sty</span><br><span class="line">index 7d74a51..adad188 100644</span><br><span class="line"><span class="comment">--- a/R.sty</span></span><br><span class="line"><span class="comment">+++ b/RightBandedBox.sty</span></span><br><span class="line"><span class="meta">@@ -60,12 +60,12 @@</span></span><br><span class="line"></span><br><span class="line">         \coordinate (a1) at (0 , \y/2 , \z/2);</span><br><span class="line">         \coordinate (b1) at (0 ,-\y/2 , \z/2);</span><br><span class="line"><span class="deletion">-        \tikzstyle&#123;depthlabel&#125;=[pos=0,text width=14*\z,text centered,sloped]</span></span><br><span class="line"><span class="addition">+        \tikzstyle&#123;depthlabel&#125;=[pos=0.5,text width=14*\z,text centered,sloped]</span></span><br><span class="line"></span><br><span class="line">         \path (c) edge ["\small\zlabels"',depthlabel](f); %depth label</span><br><span class="line">         \path (b1) edge ["\ylabel",midway] (a1);  %height label</span><br><span class="line"></span><br><span class="line"><span class="deletion">-        \tikzstyle&#123;captionlabel&#125;=[text width=15*\LastEastx/\scale,text centered]</span></span><br><span class="line"><span class="addition">+        \tikzstyle&#123;captionlabel&#125;=[text width=40*\LastEastx/\scale,text centered]</span></span><br><span class="line">         \path (\LastEastx/2,-\y/2,+\z/2) + (0,-25pt) coordinate (cap)</span><br><span class="line">         edge ["\textcolor&#123;black&#125;&#123; \bf \caption&#125;"',captionlabel] (cap); %Block caption/pic object label</span><br></pre></td></tr></table></figure>
+<p><code>RightBandedBox.sty</code>是修改后的版本。</p>
+<h3 id="添加自定义的形状"><a href="#添加自定义的形状" class="headerlink" title="添加自定义的形状"></a>添加自定义的形状</h3><p>修改pycore文件夹下的tikzeng.py文件。</p>
+<p>我主要进行了以下改动：</p>
+<ul>
+<li><p>修改了<code>SoftmaxColor</code>(softmax的颜色)</p>
+</li>
+<li><p>添加了<code>to_Linear</code>函数(linear)</p>
+<ul>
+<li>只有一个标注参数</li>
+</ul>
+</li>
+<li><p>添加了<code>to_LinearRelu</code>函数(linear后接Relu激活函数)</p>
+</li>
+<li><p>修改了<code>to_Conv</code> 函数(卷积层)</p>
+<ul>
+<li>输入的标注参数从”s_fiter, n_filter”变为了”x, y, n_filter”(<code>to_ConvRelu</code>函数也是这三个标注参数)<ul>
+<li>x: 深度 (特征图的长)</li>
+<li>y: 高度 (特征图的宽)</li>
+<li>n_filter: 宽度 (卷积核的数量)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>添加了<code>to_ConvRelu</code>函数(一层卷积后接Relu函数)</p>
+</li>
+<li><p>添加了<code>to_dashed_connection</code>函数(连接图形的四个角)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  +-----+-------+-----+</span><br><span class="line"> &#x2F;     &#x2F;|      &#x2F;|    &#x2F;|</span><br><span class="line">+-----+-|-----+-|---+ |</span><br><span class="line">|     | +-----|-+   | +</span><br><span class="line">|     |&#x2F;      |&#x2F;    |&#x2F;</span><br><span class="line">+-----+-------+-----+</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>更多细节在<a href="./pycore/tikzeng.py">tikzeng.py</a></p>
+<p>具体的规则如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(parameter)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">r"""</span></span><br><span class="line"><span class="string">    LaTeX grammar</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<p>因此你需要掌握基本的LaTeX语法才能对其进行修改，不过这个比较简单，就算你不会，照着样子也可以写出来。比如<code>to_ConvRelu</code>函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Conv,relu</span></span><br><span class="line"><span class="comment"># Bottleneck</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_ConvRelu</span><span class="params">( name, x=<span class="number">256</span>, y=<span class="number">256</span>, n_filer=<span class="number">64</span>, offset=<span class="string">"(0,0,0)"</span>, to=<span class="string">"(0,0,0)"</span>, width=<span class="number">2</span>, height=<span class="number">40</span>, depth=<span class="number">40</span>, caption=<span class="string">" "</span> )</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">r"""</span></span><br><span class="line"><span class="string">\pic[shift=&#123; """</span>+ offset +<span class="string">""" &#125;] at """</span>+ to +<span class="string">""" </span></span><br><span class="line"><span class="string">    &#123;RightBandedBox=&#123;</span></span><br><span class="line"><span class="string">        name="""</span>+ name +<span class="string">""",</span></span><br><span class="line"><span class="string">        caption="""</span>+ caption +<span class="string">""",</span></span><br><span class="line"><span class="string">        xlabel=&#123;&#123;"""</span>+ str(n_filer) +<span class="string">""", &#125;&#125;,</span></span><br><span class="line"><span class="string">        ylabel= """</span>+ str(y) +<span class="string">""",</span></span><br><span class="line"><span class="string">        zlabel="""</span>+ str(x) +<span class="string">""",</span></span><br><span class="line"><span class="string">        fill=\ConvColor,</span></span><br><span class="line"><span class="string">        bandfill=\ConvReluColor,</span></span><br><span class="line"><span class="string">        height="""</span>+ str(height) +<span class="string">""",</span></span><br><span class="line"><span class="string">        width= """</span>+ str(width) +<span class="string">""",</span></span><br><span class="line"><span class="string">        depth="""</span>+ str(depth) +<span class="string">"""</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;;</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>offset</code>是当前图形距离上一图形的距离。</p>
+</li>
+<li><p><code>to</code>是上一图形的位置。</p>
+</li>
+<li><p><code>to_ConvRelu</code>是一层卷积后接一个Relu激活函数，可以理解成两层，所以要调用<code>RightBandedBox</code>，<code>Box</code>是只有一层的情况下使用。</p>
+</li>
+<li><p><code>name</code>是你这个图形的名字，在LaTeX中，我们认为它是一个节点，<code>name</code>的内容不会显示到图片上，只是为了让你更方便的找到这个图形。</p>
+</li>
+<li><p><code>caption</code>是图形标题，会显示在图形正下方。</p>
+</li>
+<li><p><code>xlabel</code>，<code>ylabel</code>，<code>zlabel</code>跟命名一样，它们就是标签，我叫它标注参数。</p>
+</li>
+<li><p><code>fill</code>设置你图形第一层的颜色。</p>
+</li>
+<li><p><code>bandfill</code>设置你图形第二层的颜色</p>
+</li>
+<li><p><code>height</code>，<code>width</code>，<code>depth</code>设置你图形的尺寸。</p>
+</li>
+</ul>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>你需要安装LaTeX，Linux安装<code>TeXlive</code>或者根据官方说明<code>https://github.com/HarisIqbal88/PlotNeuralNet</code>安装，Windows下也可以安装<code>TeXlive</code>，如果你只是想画图，不想使用LaTeX，你可以安装<code>MikTeX</code>，如果是Windows系统还需要安装<code>git bash</code>(不安装也可以)</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>下载gtihub仓库：<br>    - 我修改过的仓库：<a href="https://github.com/demonlord1997/PlotNeuralNet">https://github.com/demonlord1997/PlotNeuralNet</a><br>    - 原本仓库：<a href="https://github.com/HarisIqbal88/PlotNeuralNet">https://github.com/HarisIqbal88/PlotNeuralNet</a></p>
+<ol>
+<li><p>在PlotNeuralNet文件夹中新建一个<code>my_project</code>文件夹</p>
+</li>
+<li><p>进入<code>my_project</code>新建一个python文件<code>my_arch</code></p>
+</li>
+<li><p>写入以下内容：</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">'../'</span>)</span><br><span class="line"><span class="keyword">from</span> pycore.tikzeng <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># defined your arch</span></span><br><span class="line">arch = [</span><br><span class="line">    to_head( <span class="string">'..'</span> ),</span><br><span class="line">    to_cor(),</span><br><span class="line">    to_begin(),</span><br><span class="line">    to_Conv(<span class="string">"input"</span>, <span class="number">32</span>, <span class="number">40</span>, <span class="string">""</span>, offset=<span class="string">"(0,0,0)"</span>, to=<span class="string">"(0,0,0)"</span>, width=<span class="number">1</span>, height=<span class="number">40</span>, depth=<span class="number">32</span>, caption=<span class="string">"Input"</span>),</span><br><span class="line">    to_ConvRelu(<span class="string">"conv1"</span>, <span class="number">32</span>, <span class="number">12</span>, <span class="number">32</span>, offset=<span class="string">"(3,0,0)"</span>, to=<span class="string">"(input-east)"</span>, width=<span class="number">5</span>, height=<span class="number">32</span>, depth=<span class="number">32</span>, caption=<span class="string">"Conv1"</span> ),</span><br><span class="line">    to_ConvRelu(<span class="string">"conv2"</span>, <span class="number">32</span>, <span class="number">4</span>, <span class="number">32</span>, offset=<span class="string">"(3,0,0)"</span>, to=<span class="string">"(conv1-east)"</span>, width=<span class="number">5</span>, height=<span class="number">12</span>, depth=<span class="number">32</span> ,caption=<span class="string">"Conv2"</span>),</span><br><span class="line"></span><br><span class="line">    to_LinearRelu(<span class="string">"linear1"</span>, <span class="number">4096</span> ,<span class="string">"(2,0,0)"</span>, <span class="string">"(conv2-east)"</span>, caption=<span class="string">"Flattening"</span>  ),</span><br><span class="line"></span><br><span class="line">    to_LinearRelu(<span class="string">"linear2"</span>, <span class="number">512</span>, <span class="string">"(2,0,0)"</span>, <span class="string">"(linear1-east)"</span>, width=<span class="number">1.5</span>, height=<span class="number">3</span>, depth=<span class="number">16</span>, caption=<span class="string">"Linear"</span>),</span><br><span class="line">    to_SoftMax(<span class="string">"soft"</span>, <span class="number">4</span> ,<span class="string">"(2,0,0)"</span>, <span class="string">"(linear2-east)"</span>, caption=<span class="string">"LogSoftMax"</span>, depth=<span class="number">4</span>  ),</span><br><span class="line">    to_dashed_connection( <span class="string">"input"</span>, <span class="string">"conv1"</span>),</span><br><span class="line">    <span class="comment"># to_dashed_connection( "conv1", "conv2"),</span></span><br><span class="line">    <span class="comment"># to_dashed_connection("conv2", "linear1"),</span></span><br><span class="line">    to_connection( <span class="string">"input"</span>, <span class="string">"conv1"</span>),</span><br><span class="line">    to_connection( <span class="string">"conv1"</span>, <span class="string">"conv2"</span>),</span><br><span class="line">    to_connection(<span class="string">"conv2"</span>, <span class="string">"linear1"</span>),</span><br><span class="line">    to_connection(<span class="string">"linear1"</span>, <span class="string">"linear2"</span>),</span><br><span class="line">    to_connection( <span class="string">"linear2"</span>,<span class="string">"soft"</span>),</span><br><span class="line">    to_end()</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    namefile = str(sys.argv[<span class="number">0</span>]).split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">    to_generate(arch, namefile + <span class="string">'.tex'</span> )</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>执行<code>tikzmake.sh</code>脚本(windows下需安装<code>git bash</code>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash ../tikzmake.sh my_arch</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>windows如果不安装<code>git bash</code>，可以先运行<code>my_arch.py</code>生成<code>my_arch.tex</code>，然后编译<code>my_arch.tex</code>即可。</p>
+<center>
+<img src="https://s1.ax1x.com/2020/07/03/NOcoEn.png" alt="my example" height="85%" width="85%" />
+</center>
+
+<p>为了支持中文，我将<code>tikzmake.sh</code>中的pdflatex改成了xelatex，如果你的系统中没有xelatex这个命令，而你又已经装了TeXlive或者MikTeX，可以手动指定xelatex的路径，像我这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/texlive/2019/bin/x86_64-linux/xelatex <span class="variable">$1</span>.tex</span><br></pre></td></tr></table></figure>
+
+<p>最后再次附上原仓库地址：<code>https://github.com/HarisIqbal88/PlotNeuralNet</code>，你可以自己修改添加一些函数。</p>
+<p>如果你不想修改也可以直接下载我的仓库：<code>https://github.com/demonlord1997/PlotNeuralNet</code>，欢迎star。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2020/06/26/extract-images-from-pdf/">
                 extract images from pdf
             </a>
@@ -808,79 +928,24 @@
 
 </div>
             
-                
-<div class="post">
-
-    <div class="post-header index">
-        <h1 class="title">
-            <a href="/2020/01/22/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAhexo%E5%8D%9A%E5%AE%A2/">
-                搭建一个hexo博客
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2020-01-22</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/配置/">配置</a>
-                </span>
-            
-        </div>
-    </div>
-
-    
-        <div class="content">
-            <h2 id="安装依赖环境"><a href="#安装依赖环境" class="headerlink" title="安装依赖环境"></a>安装依赖环境</h2><ul>
-<li>git</li>
-<li>npm</li>
-<li>nodejs</li>
-</ul>
-<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<h3 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br></pre></td></tr></table></figure>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h3 id="hexo的使用"><a href="#hexo的使用" class="headerlink" title="hexo的使用"></a>hexo的使用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init folder</span><br></pre></td></tr></table></figure>
-<p>初始化一个文件夹作为你的blog</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new file</span><br></pre></td></tr></table></figure>
-<p>在/folder/source/_posts/路径下新建一个file.md文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>打开本地预览，在<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>预览博客</p>
-<h3 id="修改Hexo主题"><a href="#修改Hexo主题" class="headerlink" title="修改Hexo主题"></a>修改Hexo主题</h3><p>你可以在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes|Hexo</a>下载你喜欢的主题，将下载好的主题文件夹移动到<code>/folder/themes/</code>下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> theme<span class="string">'s site</span></span><br></pre></td></tr></table></figure>
-<p>你可以添加about，tags，categories，contact等信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page contact</span><br></pre></td></tr></table></figure>
-<p>修改<code>/folder/_config.yml</code>完成主题的更换</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">your</span> <span class="string">theme</span></span><br></pre></td></tr></table></figure>
-
-<p>在<code>/folder/themes/your theme</code>可以选择配置你的主题样式，如果你会CSS，你也可以修改主题的样式模板</p>
-<h2 id="部署到github远端"><a href="#部署到github远端" class="headerlink" title="部署到github远端"></a>部署到github远端</h2><h3 id="添加你的github信息"><a href="#添加你的github信息" class="headerlink" title="添加你的github信息"></a>添加你的github信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"yourname"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建ssh"><a href="#创建ssh" class="headerlink" title="创建ssh"></a>创建ssh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
-<p>在<code>~/.ssh/</code>文件夹中存在<code>id_rsa</code>和<code>id_rsa.pub</code>两个文件，其中<code>id_rsa.pub</code>是公钥，把它复制粘贴到github上:</p>
-<ul>
-<li><code>setting &gt; SSH and GPG keys &gt; New SSH key</code> — 粘贴</li>
-</ul>
-<h3 id="安装deploy-git"><a href="#安装deploy-git" class="headerlink" title="安装deploy-git"></a>安装deploy-git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>修改/folder/_config.yml文件：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">'git'</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/yourGithub/yourGithub.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<h3 id="推送到远端"><a href="#推送到远端" class="headerlink" title="推送到远端"></a>推送到远端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通过<code>hexo clean</code>可以清除之前生成的内容</li>
-<li>通过<code>hexo g</code>生成静态博客</li>
-</ul>
-<p>更多教程请参考<a href="https://hexo.io/docs/" target="_blank" rel="noopener">Documentation|Hexo</a></p>
-
-        </div>
-    
-
-</div>
-            
         </section>
     </div>
 </div>
 
 
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="wrap-pagination">
+                <a class="disabled" href="/">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </a>
+                <a class="" href="/page/2/">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -905,6 +970,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2020/07/03/PlotNeuralNet%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">PlotNeuralNet个性化定制与使用说明</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2020/06/26/extract-images-from-pdf/">extract images from pdf</a>
             </li>
             
@@ -916,10 +985,6 @@
                 <a class="footer-post" href="/2020/05/19/coc-nvm-%E5%8D%87%E7%BA%A7%E5%90%8E%E6%8F%90%E7%A4%BAjedi%E7%89%88%E6%9C%AC%E5%A4%AA%E8%80%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">coc.nvm 升级后提示jedi版本太老解决方案</a>
             </li>
             
-            <li>
-                <a class="footer-post" href="/2020/02/09/texdoc-package-name-%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0%E6%96%87%E4%BB%B6/">texdoc [ package name ] 提</a>
-            </li>
-            
         </ul>
     </div>
 
@@ -929,6 +994,10 @@
 <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
     <h2>Categories</h2>
     <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/PlotNeuralNet/">PlotNeuralNet</a>
+        </li>
         
         <li>
             <a class="footer-post" href="/categories/LaTeX/">LaTeX</a>
